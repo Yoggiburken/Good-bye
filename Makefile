@@ -1,10 +1,10 @@
 CC=g++
-CPPLIBS=-lsfml-graphics -lsfml-audio -lsfml-network -lsfml-window -lsfml-graphics
+CPPLIBS=-lsfml-graphics -lsfml-audio -lsfml-network -lsfml-window -lsfml-system
 #CPPFLAGS=
 
 ## Dependencies ##
 CPP_FILES=$(wildcard src/*.cpp)
-HPP_FILES=$(wildcard inc/*.hpp)
+HPP_FILES=$(wildcard include/*.hpp)
 OBJ_FILES=$(addprefix obj/,$(notdir $(CPP_FILES:.cpp=.o)))
 
 ## Targets ##
@@ -17,7 +17,7 @@ src/Good-bye: $(OBJ_FILES)
 obj/%.o: src/%.cpp
 	g++ -c -o $@ $<
 
-src/%.cpp: inc/%.hpp
+src/%.cpp: include/%.hpp
 	g++ -c -o obj/%.o $@
 
 clean: 
