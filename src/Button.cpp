@@ -9,13 +9,11 @@ extern Event 				event;
 Button::Button(sf::Sprite& button_sprite, sf::Vector2f button_position)
 {
 	this->addSprite(button_sprite);
-	this->actor_sprites[0].setOrigin(this->actor_sprites[0].getLocalBounds().width/2, this->actor_sprites[0].getLocalBounds().height/2);
 	this->actor_sprites[0].setPosition(button_position);
 }
 Button::Button(sf::Texture& button_texture, sf::Vector2f button_position)
 {
 	this->addSprite(button_texture);
-	this->actor_sprites[0].setOrigin(this->actor_sprites[0].getLocalBounds().width/2, this->actor_sprites[0].getLocalBounds().height/2);
 	this->actor_sprites[0].setPosition(button_position);
 }
 
