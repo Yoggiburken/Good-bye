@@ -10,6 +10,5 @@ private:
 public:
     MediaClass();
     sf::Texture&    getTexture(std::string textureID);
-
 };
 #endif
