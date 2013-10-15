@@ -1,15 +1,3 @@
-<<<<<<< HEAD
-#include "../inc/a.hpp"
-#include <iostream>
-
-using namespace std;
-
-int main()
-{
-	A a;
-	a.b=5;
-	cout << a.b <<endl;
-=======
 #include<SFML/Graphics.hpp>
 #include"../include/MediaClass.hpp"
 
@@ -89,5 +77,4 @@ void intro()
 		app.draw(filter);
 		app.display();
 	}
->>>>>>> 4b67d25b0e3b0247bf913eebdec83ee7f72c1b5f
 }
