@@ -19,6 +19,11 @@ int main()
 					play_button.setOrigin(play_button.getSize().x/2, play_button.getSize().y/2);
 					play_button.setPosition(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2);
 	
+	Sprite			firecan_icon;
+					firecan_icon.setTexture(MediaBucket.getTexture("firecan_icon"));
+					FloatRect firecan_icon_size = firecan_icon.getLocalBounds();
+					firecan_icon.setOrigin(firecan_icon_size.width/2, firecan_icon_size.height/2);
+					firecan_icon.setPosition(Vector2f(firecan_icon_size.width/2, WINDOW_RESOLUTION.y-firecan_icon_size.height/2));
 	intro();
 	
 	while(app.isOpen())
@@ -36,6 +41,7 @@ int main()
 		}
 		app.clear();
 		app.draw(play_button);
+		app.draw(firecan_icon);
 		app.display();
 	}
 }
