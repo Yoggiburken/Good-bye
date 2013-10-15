@@ -2,8 +2,8 @@
 #include "Clickable.hpp"
 #include "Actor.hpp"
 
-#ifndef
-#define
+#ifndef BUTTON_HPP
+#define BUTTON_HPP
 
 class Button : public Clickable, public Actor {
 private:
@@ -11,6 +11,7 @@ private:
 	sf::Vector2f		button_position;
 public:
 						Button(sf::Sprite& button_sprite, sf::Vector2f button_position);
+						Button(sf::Texture& button_texture, sf::Vector2f button_position);
 	bool				isClicked();
 };
 

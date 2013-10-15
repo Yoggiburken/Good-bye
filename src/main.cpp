@@ -1,6 +1,6 @@
 #include<SFML/Graphics.hpp>
 #include"../include/MediaClass.hpp"
-
+#include"../include/Button.hpp"
 using namespace sf;
 
 Vector2f		WINDOW_RESOLUTION(800, 600);
@@ -14,8 +14,7 @@ void intro();
 
 int main()
 {
-	button			play_button(MediaBucket.getTexture("button_icon"), sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2));
-					play_button.setOrigin(play_button.getSize().x/2, play_button.getSize().y/2);
+	Button			play_button(MediaBucket.getTexture("button_icon"), sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2));
 	
 	Sprite			firecan_icon;
 					firecan_icon.setTexture(MediaBucket.getTexture("firecan_icon"));
@@ -37,10 +36,10 @@ int main()
 				app.close();
 			}
 			if(event.type == Event::MouseButtonPressed && play_button.isClicked()) {
-				std::cout << "It works! MOHAHAHAHAHA!!!" << std::endl;
+			
 			}
 		}
-		app.clear();
+		app.clear(Color::White);
 		app.draw(play_button);
 		app.draw(firecan_icon);
 		app.display();
