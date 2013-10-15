@@ -14,10 +14,8 @@ void intro();
 
 int main()
 {
-	RectangleShape 	play_button;
-					play_button.setSize(Vector2f(300,66));
+	button			play_button(MediaBucket.getTexture("button_icon"), sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2));
 					play_button.setOrigin(play_button.getSize().x/2, play_button.getSize().y/2);
-					play_button.setPosition(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2);
 	
 	Sprite			firecan_icon;
 					firecan_icon.setTexture(MediaBucket.getTexture("firecan_icon"));
@@ -37,6 +35,9 @@ int main()
 			}
 			if(event.type == Event::Closed) {
 				app.close();
+			}
+			if(event.type == Event::MouseButtonPressed && play_button.isClicked()) {
+				std::cout << "It works! MOHAHAHAHAHA!!!" << std::endl;
 			}
 		}
 		app.clear();
