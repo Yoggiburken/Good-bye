@@ -65,10 +65,14 @@ void intro()
 
 	while(intro_time > seconds(0)) 
 	{
-		if(Keyboard::isKeyPressed(Keyboard::Escape)) {
-			intro_time = seconds(0);
+		while(app.pollEvent(event))
+		{
+			if(event.type == Event::KeyPressed) {
+				if(event.key.code == Keyboard::Escape) {
+					intro_time = seconds(0);
+				}
+			}
 		}
-		
 		elapsed_time = clock.restart();
 		intro_time -= elapsed_time;
 		if(opacity >= 0) {
