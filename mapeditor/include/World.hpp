@@ -23,6 +23,8 @@ private:
 	sf::Texture							sprite_sheet;	
 	std::vector<sf::Sprite>				tile_types;
 	std::vector<sf::Sprite>				tilemap;
+	void								addTile();
+	void								drawMouseTile();
 public:
 										World();
 	void								main();
