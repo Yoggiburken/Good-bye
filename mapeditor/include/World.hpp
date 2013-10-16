@@ -1,24 +1,17 @@
 #include<map>
 #include<vector>
 #include<SFML/Graphics.hpp>
+#include"UI.hpp"
 
-#ifndef VECTOR_COMPARATOR
-#define VECTOR_COMPARATOR
-struct VectorComparator {
-	bool operator() (sf::Vector2f lhs, sf::Vector2f rhs) const
-	{
-		return lhs.x + lhs.y > rhs.x + rhs.y;
-	}
-};
-#endif
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
 class World {
 private:
+	friend class UI;
 	sf::RenderWindow					app;
 	sf::Event							event;
-
+	UI									tilewindow;
 	int									tilenumber;
 	sf::Texture							sprite_sheet;	
 	std::vector<sf::Sprite>				tile_types;

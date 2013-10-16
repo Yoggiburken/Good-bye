@@ -25,7 +25,11 @@ void World::main()
 	{
 		while(this->app.pollEvent(this->event))
 		{
-			if(this->event.type == Event::KeyPressed) {
+			if(this->event.type == Event::Resized) {
+				View 	view = app.getView();
+						view.setSize(Vector2f(event.size.width, event.size.height));
+				app.setView(view);
+			} else if(this->event.type == Event::KeyPressed) {
 				if(this->event.key.code == Keyboard::Escape) {
 					this->app.close();
 				} else if(this->event.key.code == Keyboard::Up) {

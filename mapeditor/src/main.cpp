@@ -1,8 +1,8 @@
 #include"../include/World.hpp"
 
+World 	world;
 
 int main()
 {
-	World 	world;
 			world.main();
 }
