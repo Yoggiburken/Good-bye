@@ -1,12 +1,15 @@
 #include<SFML/Graphics.hpp>
+#include<vector>
 
 #ifndef UI_HPP
 #define UI_HPP
-class UI {
+class UI : public sf::Drawable {
 private:
-	sf::RenderWindow	window;
+	std::vector<sf::Sprite>		tile_types;
+
+	void						draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
-						UI();
-	void				main();
+	void						setContent(std::vector<sf::Sprite>& tile_types);
+	void						setMouseTileOnClick(sf::Event& event);
 };
 #endif

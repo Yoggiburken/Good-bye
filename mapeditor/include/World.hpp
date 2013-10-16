@@ -10,12 +10,14 @@ class World {
 private:
 	friend class UI;
 	sf::RenderWindow					app;
+	sf::RenderWindow					tilewindow;
+	UI									tile_manager;
 	sf::Event							event;
-	UI									tilewindow;
 	int									tilenumber;
 	sf::Texture							sprite_sheet;	
 	std::vector<sf::Sprite>				tile_types;
 	std::vector<sf::Sprite>				tilemap;
+	void								events();
 	void								addTile();
 	void								drawMouseTile();
 public:
