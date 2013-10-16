@@ -1,11 +1,12 @@
 #include<vector>
-#include"../include/Tile.hpp"
+#include"TileMap.hpp"
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
 class World {
 private:
-	std::vector<Tile> tilemap;
+	TileMap		map;
 public:
+	void		game();
 };
 #endif
