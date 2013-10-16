@@ -5,12 +5,14 @@
 using namespace sf;
 
 
-World::World() : app(VideoMode(800,600), "MapEditor")
+World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128, 600), "Tile Manager")
 {
+	this->tilewindow.setPosition(Vector2i(app.getPosition().x - 138, app.getPosition().y));
+	
 	this->sprite_sheet.loadFromFile("../resources/terrain_tileset.png");
 	this->tilenumber = 1;
 	Sprite 	sprite;
-	for(int i=0; i<36; i++) {
+	for(int i=0; i<4; i++) {
 		sprite.setTexture(this->sprite_sheet);
 		for(int j=0; j<9; j++) {
 			sprite.setTextureRect(IntRect(32*j, 32*i, 32, 32));
@@ -21,43 +23,10 @@ World::World() : app(VideoMode(800,600), "MapEditor")
 
 void World::main()
 {
+	this->tile_manager.setContent(this->tile_types);
 	while(this->app.isOpen())
 	{
-		while(this->app.pollEvent(this->event))
-		{
-			if(this->event.type == Event::Resized) {
-				View 	view = app.getView();
-						view.setSize(Vector2f(event.size.width, event.size.height));
-				app.setView(view);
-			} else if(this->event.type == Event::KeyPressed) {
-				if(this->event.key.code == Keyboard::Escape) {
-					this->app.close();
-				} else if(this->event.key.code == Keyboard::Up) {
-					this->tilenumber++;
-					if(this->tilenumber > 36) {
-						this->tilenumber = 0;
-					}
-				} else if(this->event.key.code == Keyboard::Down) {
-					this->tilenumber--;
-					if(this->tilenumber < 0) {
-						this->tilenumber = 35;
-					}
-				}	
-			} else if(this->event.type == Event::MouseWheelMoved) {
-				if(this->event.mouseWheel.delta > 0) {
-					this->tilenumber++;
-					if(this->tilenumber > 36) {
-						this->tilenumber = 0;
-					}
-				} else {
-					this->tilenumber--;
-					if(this->tilenumber < 0) {
-						this->tilenumber = 35;
-					}
-				}
-			}
-		}
-	
+		this->events();
 		if(Mouse::isButtonPressed(Mouse::Left)) {
 			this->addTile();
 		}
@@ -68,9 +37,48 @@ void World::main()
 		}
 		this->drawMouseTile();
 		this->app.display();
+		this->tilewindow.clear(Color::White);
+		this->tilewindow.draw(tile_manager);
+		this->tilewindow.display();
 	}
 }
 
+void World::events() 
+{
+	while(this->app.pollEvent(this->event))
+	{
+		if(this->event.type == Event::Resized) {
+			View 	view = app.getView();
+					view.setSize(Vector2f(event.size.width, event.size.height));
+			app.setView(view);
+		} else if(this->event.type == Event::KeyPressed) {
+			if(this->event.key.code == Keyboard::Escape) {
+				this->tilewindow.close();
+				this->app.close();
+			} else if(this->event.key.code == Keyboard::Up) {
+				this->tilenumber++;
+				if(this->tilenumber > 36) {
+					this->tilenumber = 0;
+				}
+			} else if(this->event.key.code == Keyboard::Down) {
+				this->tilenumber--;
+				if(this->tilenumber < 0) {
+					this->tilenumber = 35;
+				}
+			}	
+		}
+	}
+
+	while(this->tilewindow.pollEvent(this->event))
+	{
+		if(this->event.type == Event::MouseButtonPressed) {
+			if(this->event.mouseButton.button == Mouse::Left) {
+				this->tile_manager.setMouseTileOnClick(this->event);
+			}
+		}
+
+	}
+}
 void World::addTile()
 {
 		Vector2f 	position = Vector2f(app.mapPixelToCoords(Mouse::getPosition(app)));

@@ -1,21 +1,37 @@
+#include<iostream>
 #include"../include/UI.hpp"
 #include"../include/World.hpp"
 
 using namespace sf;
 
-extern World 	world;
+extern World	world;
 
-UI::UI()
+void UI::setContent(std::vector<Sprite>& tile_types)
 {
-	this->window.create(VideoMode(200, 600), "tiles");
-	this->window.setPosition(Vector2i(0,0));
+	this->tile_types = tile_types;
+	for(int i=0; i<this->tile_types.size()/4; i++) {
+		for(int j=0; j<4; j++) {
+			this->tile_types[j+4*i].setPosition(Vector2f(32*j,32*i));
+		}
+	}
 }
 
-
-void UI::main()
+void UI::draw(RenderTarget& target, RenderStates states) const
 {
-	if(this->window.isOpen()) {
-		this->window.clear();
-		this->window.display();
+	for(int i=0; i<this->tile_types.size(); i++) {
+		target.draw(this->tile_types[i]);
+	}
+}
+
+void UI::setMouseTileOnClick(sf::Event& event)
+{
+	std::cout<<event.mouseButton.x<<"   "<<event.mouseButton.y<<std::endl;
+	for(int i=0; i<this->tile_types.size(); i++) {
+		FloatRect 	tile = this->tile_types[i].getGlobalBounds();
+		if(event.mouseButton.x > tile.left && event.mouseButton.x < tile.left + tile.width &&
+		   event.mouseButton.y > tile.top  && event.mouseButton.y < tile.top  + tile.height) {
+			
+			world.tilenumber = i;
+		}
 	}
 }
