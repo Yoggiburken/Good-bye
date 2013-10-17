@@ -1,4 +1,5 @@
 #include<SFML/Graphics.hpp>
+#include<string>
 #include"../include/MediaClass.hpp"
 #include"../include/Button.hpp"
 using namespace sf;
@@ -14,7 +15,10 @@ void intro();
 
 int main()
 {
-	Button			play_button(MediaBucket.getTexture("button_icon"), sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2));
+	Button			start_button(MediaBucket.getTexture("Start1"), sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2));
+					start_button.addSprite(MediaBucket.getTexture("Start2"));
+					start_button.addSprite(MediaBucket.getTexture("Start3"));
+					start_button.setPosition(sf::Vector2f(WINDOW_RESOLUTION.x/2, WINDOW_RESOLUTION.y/2), -1);
 	
 	Sprite			firecan_icon;
 					firecan_icon.setTexture(MediaBucket.getTexture("firecan_icon"));
@@ -35,12 +39,13 @@ int main()
 			if(event.type == Event::Closed) {
 				app.close();
 			}
-			if(event.type == Event::MouseButtonPressed && play_button.isClicked()) {
-			
+			if(event.type == Event::MouseButtonPressed && start_button.isClicked()) {
+
 			}
 		}
+	
 		app.clear(Color::White);
-		app.draw(play_button);
+		app.draw(start_button);
 		app.draw(firecan_icon);
 		app.display();
 	}

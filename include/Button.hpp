@@ -9,12 +9,13 @@ class Button : public Clickable, public Actor {
 private:
 	Actor				button_actor;
 	sf::Vector2f		button_position;
-
+	bool				clicked;
 	virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 						Button(sf::Sprite& button_sprite, sf::Vector2f button_position);
 						Button(sf::Texture& button_texture, sf::Vector2f button_position);
 	bool				isClicked();
+	bool				isHovering() const;
 };
 
 #endif
