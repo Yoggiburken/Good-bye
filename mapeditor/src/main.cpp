@@ -4,5 +4,6 @@ World 	world;
 
 int main()
 {
-			world.main();
+	world.main();
+	return 0;
 }

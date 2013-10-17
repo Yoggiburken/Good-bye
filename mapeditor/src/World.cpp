@@ -19,9 +19,6 @@ World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128,
 			this->tile_types.push_back(sprite);
 		}
 	}
-
-	this->app_focus 		= true;
-	this->tilewindow_focus 	= false;
 }
 
 void World::main()
@@ -31,7 +28,7 @@ void World::main()
 	{
 		this->events();
 		this->input();	
-		this->app.clear();
+			this->app.clear();
 		for(int i=0; i<this->tilemap.size(); i++) {
 			this->app.draw(this->tilemap[i]);
 		}
@@ -53,8 +50,9 @@ void World::events()
 			app.setView(view);
 		} else if(this->event.type == Event::KeyPressed) {
 			if(this->event.key.code == Keyboard::Escape) {
-				this->tilewindow.close();
 				this->app.close();
+				this->tilewindow.close();
+				return;
 			} else if(this->event.key.code == Keyboard::Up) {
 				this->tilenumber++;
 				if(this->tilenumber > 36) {
