@@ -11,6 +11,8 @@ private:
 	friend class UI;
 	sf::RenderWindow					app;
 	sf::RenderWindow					tilewindow;
+	bool								app_focus;
+	bool 								tilewindow_focus;
 	UI									tile_manager;
 	sf::Event							event;
 	int									tilenumber;
@@ -18,6 +20,7 @@ private:
 	std::vector<sf::Sprite>				tile_types;
 	std::vector<sf::Sprite>				tilemap;
 	void								events();
+	void								input();
 	void								addTile();
 	void								drawMouseTile();
 public:

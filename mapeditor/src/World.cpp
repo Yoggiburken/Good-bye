@@ -19,6 +19,9 @@ World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128,
 			this->tile_types.push_back(sprite);
 		}
 	}
+
+	this->app_focus 		= true;
+	this->tilewindow_focus 	= false;
 }
 
 void World::main()
@@ -27,10 +30,7 @@ void World::main()
 	while(this->app.isOpen())
 	{
 		this->events();
-		if(Mouse::isButtonPressed(Mouse::Left)) {
-			this->addTile();
-		}
-		
+		this->input();	
 		this->app.clear();
 		for(int i=0; i<this->tilemap.size(); i++) {
 			this->app.draw(this->tilemap[i]);
@@ -77,6 +77,13 @@ void World::events()
 			}
 		}
 
+	}
+}
+
+void World::input()
+{
+	if(Mouse::isButtonPressed(Mouse::Left)) {
+		this->addTile();
 	}
 }
 void World::addTile()

@@ -1,4 +1,3 @@
-#include<iostream>
 #include"../include/UI.hpp"
 #include"../include/World.hpp"
 
@@ -25,7 +24,6 @@ void UI::draw(RenderTarget& target, RenderStates states) const
 
 void UI::setMouseTileOnClick(sf::Event& event)
 {
-	std::cout<<event.mouseButton.x<<"   "<<event.mouseButton.y<<std::endl;
 	for(int i=0; i<this->tile_types.size(); i++) {
 		FloatRect 	tile = this->tile_types[i].getGlobalBounds();
 		if(event.mouseButton.x > tile.left && event.mouseButton.x < tile.left + tile.width &&
