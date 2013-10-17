@@ -12,6 +12,17 @@ void 	Actor::draw(RenderTarget& target, RenderStates states) const
 	}
 }
 
+void Actor::setPosition(sf::Vector2f position, int sprite_ID =- 1)
+{
+	if(sprite_ID == -1) {
+		for(int i=0; i<actor_sprites.size(); i++) {
+			actor_sprites[i].setPosition(position);
+		}
+	} else if(sprite_ID >= 0) {
+		actor_sprites[sprite_ID].setPosition(position);	
+	}
+}
+
 void	Actor::addSprite(Texture& texture)
 {
 	Sprite 	sprite;
