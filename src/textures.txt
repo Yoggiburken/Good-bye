@@ -1,4 +1,6 @@
 ../resources/firecan.png                                                        firecan
 ../resources/firecan_icon.png                                                   firecan_icon
-../resources/button_icon.png													button_icon
 ../resources/terrain_tileset.png                                                terrain_tileset
+../resources/Start1.png                                                         Start1
+../resources/Start2.png                                                         Start2
+../resources/Start3.png                                                         Start3
