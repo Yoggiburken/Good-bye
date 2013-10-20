@@ -20,7 +20,7 @@ MediaClass::MediaClass()
     }
 }
 
-sf::Texture& MediaClass::getTexture(std::string textureID)
+sf::Texture& MediaClass::getTexture(std::string& textureID)
 {
     return textures[textureID.c_str()];
 }
