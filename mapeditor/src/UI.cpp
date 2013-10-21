@@ -5,7 +5,12 @@ using namespace sf;
 
 extern World	world;
 
-void UI::setContent(std::vector<Sprite>& tile_types)
+UI::~UI()
+{
+	this->tile_types.clear();
+}
+
+void UI::setContent(std::vector<Tile>& tile_types)
 {
 	this->tile_types = tile_types;
 	for(int i=0; i<this->tile_types.size()/4; i++) {
@@ -20,6 +25,21 @@ void UI::draw(RenderTarget& target, RenderStates states) const
 	for(int i=0; i<this->tile_types.size(); i++) {
 		target.draw(this->tile_types[i]);
 	}
+}
+
+void UI::mouseHover(RenderWindow& window)
+{
+	Vector2f 	mousepos 	= window.mapPixelToCoords(Mouse::getPosition(window));
+	for(int i=0; i<this->tile_types.size(); i++) {
+		FloatRect tile = this->tile_types[i].getGlobalBounds();
+		if(mousepos.x > tile.left && mousepos.x < tile.left + tile.width &&
+		   mousepos.y > tile.top  && mousepos.y < tile.top  + tile.height) {
+			tile_types[i].setShowTypetext(true);
+		} else {
+			tile_types[i].setShowTypetext(false);
+		}
+	}
+
 }
 
 void UI::setMouseTileOnClick(sf::Event& event)

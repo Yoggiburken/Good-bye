@@ -1,6 +1,10 @@
+#include<iostream>
+#include"../include/MediaClass.hpp"
 #include"../include/World.hpp"
 
-World 	world;
+
+MediaClass 	MediaBucket;
+World 		world;
 
 int main()
 {

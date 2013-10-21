@@ -1,0 +1,2 @@
+TEXTURE                       ../resources/terrain_tileset.png                                                terrain_tileset
+FONT                          ../resources/VT323-Regular.ttf                                                  VT323-Regular
