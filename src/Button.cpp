@@ -38,7 +38,7 @@ bool Button::isClicked()
 		event.mouseButton.button == Mouse::Left &&
 		this->isHovering()) {
 		
-		clicked = true;
+		this->clicked = true;
 		return true;
 		}
 
