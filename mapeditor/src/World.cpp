@@ -1,9 +1,17 @@
 #include<cmath>
 #include<iostream>
+#include<sstream>
 #include"../include/World.hpp"
-
+#include"../include/Tile.hpp"
 using namespace sf;
 
+std::string itoa(int num)
+{
+	std::stringstream ss;
+	ss<<num;
+	std::string str = ss.str();
+	return str;
+}
 
 World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128, 600), "Tile Manager")
 {
@@ -16,9 +24,18 @@ World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128,
 		sprite.setTexture(this->sprite_sheet);
 		for(int j=0; j<9; j++) {
 			sprite.setTextureRect(IntRect(32*j, 32*i, 32, 32));
-			this->tile_types.push_back(sprite);
+			Tile 	tile;
+					tile.setType("LELEL", sprite);
+					tile.setPosition(Vector2f(32*j, 32*i));
+			this->tile_types.push_back(tile);
 		}
 	}
+}
+
+World::~World()
+{
+	this->tile_types.clear();
+	this->tilemap.clear();
 }
 
 void World::main()
@@ -66,10 +83,15 @@ void World::events()
 			}	
 		}
 	}
-
+	
 	while(this->tilewindow.pollEvent(this->event))
 	{
-		if(this->event.type == Event::MouseButtonPressed) {
+		if(this->event.type == Event::Resized) {
+			View 	view = this->tilewindow.getView();
+					view.setSize(Vector2f(event.size.width, event.size.height));
+					view.setCenter(Vector2f(event.size.width/2, event.size.height/2));
+			this->tilewindow.setView(view);
+		} else if(this->event.type == Event::MouseButtonPressed) {
 			if(this->event.mouseButton.button == Mouse::Left) {
 				this->tile_manager.setMouseTileOnClick(this->event);
 			}
@@ -80,6 +102,12 @@ void World::events()
 
 void World::input()
 {
+	if(!app.isOpen()) {
+		return;
+	}
+	if(this->tilewindow.isOpen()) {
+		this->tile_manager.mouseHover(this->tilewindow);
+	}
 	if(Mouse::isButtonPressed(Mouse::Left)) {
 		this->addTile();
 	}

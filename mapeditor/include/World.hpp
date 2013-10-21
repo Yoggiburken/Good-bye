@@ -2,6 +2,7 @@
 #include<vector>
 #include<SFML/Graphics.hpp>
 #include"UI.hpp"
+#include"Tile.hpp"
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
@@ -19,8 +20,8 @@ private:
 	//tiles
 	int									tilenumber; 		//Keeps track of selected tile
 	sf::Texture							sprite_sheet;			
-	std::vector<sf::Sprite>				tile_types;			//Tiles to choose from
-	std::vector<sf::Sprite>				tilemap;
+	std::vector<Tile>				tile_types;			//Tiles to choose from
+	std::vector<Tile>				tilemap;
 		
 	void								events(); 			//Parse events
 	void								input();  			//Reads input
@@ -28,6 +29,7 @@ private:
 	void								drawMouseTile(); 	//Draws current tile at mouse pos
 public:
 										World();
+										~World();
 	void								main();
 };
 #endif
