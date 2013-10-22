@@ -7,8 +7,13 @@
 class MediaClass {
 private:
     std::map<std::string, sf::Texture> 		textures;
+	std::map<std::string, sf::SoundBuffer> 	soundbuffers;
+	std::map<std::string, sf::Font>			fonts;
 public:
     MediaClass();
-    sf::Texture&    getTexture(std::string textureID);
+    ~MediaClass();
+	sf::Texture&    	getTexture(std::string textureID);
+	sf::SoundBuffer&	getSoundBuffer(std::string soundbufferID);
+	sf::Font&			getFont(std::string fontID);
 };
 #endif

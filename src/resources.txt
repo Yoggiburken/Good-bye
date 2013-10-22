@@ -1,0 +1,6 @@
+TEXTURE                       ../resources/Start1.png                                                         Start1
+TEXTURE                       ../resources/Start2.png                                                         Start2
+TEXTURE                       ../resources/Start3.png                                                         Start3
+TEXTURE                       ../resources/firecan.png                                                        firecan
+TEXTURE                       ../resources/firecan_icon.png                                                   firecan_icon
+TEXTURE                       ../resources/terrain_tileset.png                                                terrain_tileset
