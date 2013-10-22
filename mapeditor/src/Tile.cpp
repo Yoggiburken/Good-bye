@@ -57,3 +57,8 @@ FloatRect Tile::getGlobalBounds() const
 {
 	return this->sprite.getGlobalBounds();
 }
+
+std::string Tile::getType() const
+{
+	return this->type;
+}

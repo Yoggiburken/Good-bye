@@ -19,5 +19,6 @@ public:
 	void						setShowTypetext(bool value);
 	sf::Vector2f				getPosition() const;
 	sf::FloatRect				getGlobalBounds() const;
+	std::string					getType() const;
 };
 #endif

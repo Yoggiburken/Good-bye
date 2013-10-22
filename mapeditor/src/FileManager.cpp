@@ -22,7 +22,7 @@ void FileManager::writeToFile(string filename, vector<Tile>& tiles)
 	
 	for(int i=0; i<tiles.size(); i++) {
 		Vector2f 	position 	= tiles[i].getPosition();
-		int			type		= tiles[i].getType();
+		std::string type		= tiles[i].getType();
 		this->file<<position.x<<" "<<position.y<<" "<<type<<endl;
 	}
 }
