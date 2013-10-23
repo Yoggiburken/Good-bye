@@ -1,8 +1,11 @@
+#include"../include/MediaClass.hpp"
 #include"../include/FileManager.hpp"
 #include<deque>
 
 using namespace sf;
 using namespace std;
+
+extern MediaClass MediaBucket;
 
 void FileManager::readFromFile(string filename, vector<Tile>& tiles)
 {
@@ -11,8 +14,14 @@ void FileManager::readFromFile(string filename, vector<Tile>& tiles)
 	while(!file.eof())
 	{
 		Vector2f 	position;
-		int			type;
+		string		type;
 		this->file>>position.x>>position.y>>type;
+		Sprite 	sprite;
+				sprite.setTexture(MediaBucket.getTexture(type));
+		Tile 	temp;
+				temp.setPosition(position);
+				temp.setType(type, sprite);
+		tiles.push_back(temp);
 	}
 }
 
@@ -23,7 +32,7 @@ void FileManager::writeToFile(string filename, vector<Tile>& tiles)
 	
 	for(int i=0; i<tiles.size(); i++) {
 		Vector2f 	position 	= tiles[i].getPosition();
-		std::string type		= tiles[i].getType();
+		string 		type		= tiles[i].getType();
 		this->file<<position.x<<" "<<position.y<<" "<<type<<endl;
 	}
 }

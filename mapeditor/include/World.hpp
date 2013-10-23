@@ -3,6 +3,7 @@
 #include<SFML/Graphics.hpp>
 #include"UI.hpp"
 #include"Tile.hpp"
+#include"FileManager.hpp"
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
@@ -20,8 +21,11 @@ private:
 	//tiles
 	int									tilenumber; 		//Keeps track of selected tile
 	sf::Texture							sprite_sheet;			
-	std::vector<Tile>				tile_types;			//Tiles to choose from
-	std::vector<Tile>				tilemap;
+	std::vector<Tile>					tile_types;			//Tiles to choose from
+	std::vector<Tile>					tilemap;
+	
+	//Load and save
+	FileManager							filemanager;
 		
 	void								events(); 			//Parse events
 	void								input();  			//Reads input
