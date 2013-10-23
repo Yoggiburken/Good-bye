@@ -1,3 +1,4 @@
+#include<iomanip>
 #include"../include/MediaClass.hpp"
 #include"../include/FileManager.hpp"
 #include<deque>
@@ -9,17 +10,18 @@ extern MediaClass MediaBucket;
 
 void FileManager::readFromFile(string filename, vector<Tile>& tiles)
 {
-	this->file.open(filename.c_str());
+	ifstream file;
+	file.open(filename.c_str());
 	
 	while(!file.eof())
 	{
 		Vector2f 	position;
 		string		type;
-		this->file>>position.x>>position.y>>type;
+		file>>position.y>>position.x>>type;
 		Sprite 	sprite;
 				sprite.setTexture(MediaBucket.getTexture(type));
 		Tile 	temp;
-				temp.setPosition(position);
+				temp.setPosition(Vector2f(position.x*32, position.y*32));
 				temp.setType(type, sprite);
 		tiles.push_back(temp);
 	}
@@ -27,13 +29,14 @@ void FileManager::readFromFile(string filename, vector<Tile>& tiles)
 
 void FileManager::writeToFile(string filename, vector<Tile>& tiles)
 {
-	this->file.open(filename.c_str());
+	ofstream file;
+	file.open("MAPNAME.map");
 	this->sort(tiles);
 	
 	for(int i=0; i<tiles.size(); i++) {
 		Vector2f 	position 	= tiles[i].getPosition();
 		string 		type		= tiles[i].getType();
-		this->file<<position.x<<" "<<position.y<<" "<<type<<endl;
+		file<<left<<setw(10)<<setfill(' ')<<position.y/32<<setw(10)<<position.x/32<<setw(10)<<type<<endl;
 	}
 }
 

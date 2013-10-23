@@ -69,6 +69,8 @@ void World::events()
 			if(this->event.key.code == Keyboard::Escape) {
 				this->app.close();
 				this->tilewindow.close();
+				std::string LEL = "l";
+				this->filemanager.writeToFile(LEL, this->tilemap);
 				return;
 			} else if(this->event.key.code == Keyboard::Up) {
 				this->tilenumber++;
