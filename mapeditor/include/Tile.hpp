@@ -14,7 +14,7 @@ private:
 	virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 								Tile();
-	void						setType(std::string type, sf::Sprite& sprite);
+	void						setType(std::string type);
 	void						setPosition(sf::Vector2f position);
 	void						setShowTypetext(bool value);
 	sf::Vector2f				getPosition() const;

@@ -25,7 +25,7 @@ World::World() : app(VideoMode(800,600), "MapEditor"), tilewindow(VideoMode(128,
 		for(int j=0; j<9; j++) {
 			sprite.setTextureRect(IntRect(32*j, 32*i, 32, 32));
 			Tile 	tile;
-					tile.setType("LELEL", sprite);
+					tile.setType("LELEL");
 					tile.setPosition(Vector2f(32*j, 32*i));
 			this->tile_types.push_back(tile);
 		}
