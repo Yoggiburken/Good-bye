@@ -24,7 +24,7 @@ void FileManager::readFromFile(string filename, vector<Tile>& tiles)
 				sprite.setTexture(MediaBucket.getTexture(type));
 		Tile 	temp;
 				temp.setPosition(Vector2f(position.x, position.y));
-				temp.setType(type, sprite);
+				temp.setType(type);
 		tiles.push_back(temp);
 	}
 }

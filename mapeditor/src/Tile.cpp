@@ -26,9 +26,9 @@ void Tile::draw(RenderTarget& target, RenderStates states) const
 	}
 }
 
-void Tile::setType(std::string type, Sprite& sprite)
+void Tile::setType(std::string type)
 {
-	this->sprite 	= sprite;
+	this->sprite.setTexture(MediaBucket.getTexture(type));
 	this->type 		= type;
 	this->text.setString(this->type);
 	this->text_rect.setSize(Vector2f(this->text.getLocalBounds().width, this->text.getLocalBounds().height) + Vector2f(2, 2));
