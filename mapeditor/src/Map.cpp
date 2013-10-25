@@ -26,8 +26,8 @@ void Map::addTileToLayer(int layer_index, Tile& tile)
 bool Map::removeTileFromLayer(int layer_index, Vector2f position)
 {
 	for(int i=0; i<this->layers[layer_index].size(); i++) {
-		if(posiiton == this->layers[layer_index][i].getPosition()) {
-			this->layers[current_layer].erase(this->layers[layer_index].begin() + i);
+		if(position == this->layers[layer_index][i].getPosition()) {
+			this->layers[layer_index].erase(this->layers[layer_index].begin() + i);
 			return true;
 		}
 	}
