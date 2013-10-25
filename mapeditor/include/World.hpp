@@ -4,6 +4,7 @@
 #include"UI.hpp"
 #include"Tile.hpp"
 #include"FileManager.hpp"
+#include"Map.hpp"
 
 #ifndef WORLD_HPP
 #define WORLD_HPP
