@@ -81,6 +81,9 @@ void World::events()
 				}
 				ErrorMessage(error.c_str());
 				return;
+			} else if(this->event.key.code == Keyboard::L) {
+				std::cout << "ELO" <<std::endl;
+				this->filemanager.readFromFile("MAPNAME.map", this->tilemap);
 			} else if(this->event.key.code == Keyboard::Up) {
 				this->tilenumber++;
 				if(this->tilenumber > 36) {

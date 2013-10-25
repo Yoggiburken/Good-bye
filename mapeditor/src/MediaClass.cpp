@@ -2,6 +2,7 @@
 #include<iostream>
 #include<iomanip>
 #include"../include/MediaClass.hpp"
+#include"../include/ErrorMessage.hpp"
 
 using namespace std;
 
@@ -20,15 +21,21 @@ MediaClass::MediaClass()
 		cout<<left<<setfill(' ')<<setw(20)<<filetype<<setw(40)<<filepath<<setw(20)<<hashname<<endl;
         if(filetype == "TEXTURE") {
     		sf::Texture temp;
-        				temp.loadFromFile(filepath);
+        	if(!temp.loadFromFile(filepath)) {
+				ErrorMessage("Failed to load texture " + hashname + ".");
+			}
 			textures.insert( std::pair<std::string, sf::Texture>(hashname, temp));
 		} else if(filetype == "SOUND") {
 			sf::SoundBuffer temp;
-        					temp.loadFromFile(filepath);
+			if(!temp.loadFromFile(filepath)) {
+				ErrorMessage("Failed to load " + hashname + ".");
+			}
 			soundbuffers.insert( std::pair<std::string, sf::SoundBuffer>(hashname, temp));
 		} else if(filetype == "FONT") {
 			sf::Font	temp;
-        				temp.loadFromFile(filepath);
+        	if(!temp.loadFromFile(filepath)) {
+				ErrorMessage("Failed to load " + hashname + ".");
+			}
 			fonts.insert( std::pair<std::string, sf::Font>(hashname, temp));
 		}
     }

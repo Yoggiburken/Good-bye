@@ -40,7 +40,7 @@ int main()
 				app.close();
 			}
 			if(event.type == Event::MouseButtonPressed && start_button.isClicked()) {
-
+				std::cout << "Naiger" <<std::endl;
 			}
 		}
 	
