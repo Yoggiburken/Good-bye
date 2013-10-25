@@ -1,6 +1,7 @@
 #include<cmath>
 #include<iostream>
 #include<sstream>
+#include"../include/ErrorMessage.hpp"
 #include"../include/World.hpp"
 #include"../include/Tile.hpp"
 using namespace sf;
@@ -71,6 +72,14 @@ void World::events()
 				this->tilewindow.close();
 				std::string LEL = "l";
 				this->filemanager.writeToFile(LEL, this->tilemap);
+				std::string error;
+				for(int i=0; i<30; i++) {
+					error += "ERROR";
+					if(i%10 == 0 && i!=0) {
+						error += "\n";
+					}
+				}
+				ErrorMessage(error.c_str());
 				return;
 			} else if(this->event.key.code == Keyboard::Up) {
 				this->tilenumber++;
